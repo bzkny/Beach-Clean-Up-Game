@@ -5,7 +5,7 @@ body {
   background-size: 100%;
 }
 
-h1 {
+h1, h2 {
 color: #fff;
 }
 
@@ -16,4 +16,17 @@ color: #fff;
   margin: 0 auto;
 }
 
+.beach{
+  position: absolute;
+  top: 106%;
+  width: 70%;
+  height: 70%;
+}
 
+.trash {
+position: relative;
+left: 300px;
+}
+.trash img {
+width: 9%;
+}
