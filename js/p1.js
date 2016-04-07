@@ -15,7 +15,7 @@ var litter = [
   ['fishNet', 'img/fishNet.png', 5],
   ['waterbottle', 'img/waterbottle.png', 4],
   ['glass', 'img/bottle.png', 3],
-  ['plasticbag', 'img/randoPlastic.png', 2],
+  ['plasticbag', 'img/shoppingbag.png', 2],
   ['shoppingbag', 'img/shoppingbag.png', 1]
 ];
 //--> GENERATE RANDOM LITTER
@@ -24,20 +24,23 @@ var litterTheBeach = function(){
   litter.forEach(function(){
 
     //RANDOM LITTER SELECTION
-    var allTrash = litter[Math.floor(Math.random()*7)];
+    var allTrash = litter[Math.floor(Math.random()*10)];
     //SELECT ONLY THE IMAGES
     var allTrashPics = allTrash[1];
     //CREATE DIV TO APPEND
-    var trash = $('<div class="trash"><img src=""/> </div>');
+    var trash = $('<div class="trash"><img class="trashpic" src=""/> </div>');
     $(trash).children('img').attr('src',allTrashPics);
     //ADD CONTAINERS TO BEACH
     var beach = $('.beach');
     beach.append(trash);
 
     //RANDOM PLACEMENT OF TRASH ON BEACH
-
-    trash.css("top", Math.random() * window.innerHeight);
-    trash.css("left", Math.random() * window.innerWidth);
+    var bodyX = $('.container').innerWidth() - 90;
+    console.log(bodyX);
+    var bodyY = $('body').innerHeight() + 50;
+    console.log(bodyY);
+    trash.css("left", Math.random() * bodyX);
+    trash.css("top", Math.random() * bodyY);
 
   })
 
