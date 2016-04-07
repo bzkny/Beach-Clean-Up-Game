@@ -27,7 +27,6 @@ var litterTheBeach = function(){
     var allTrash = litter[Math.floor(Math.random()*7)];
     //SELECT ONLY THE IMAGES
     var allTrashPics = allTrash[1];
-    console.log(allTrash[1]);
     //CREATE DIV TO APPEND
     var trash = $('<div class="trash"><img src=""/> </div>');
     //ADD CONTAINERS TO BEACH
@@ -35,8 +34,9 @@ var litterTheBeach = function(){
     beach.append(trash);
 
     //LOOP THROUGH IMG AND APPEND EACH TO BEACH
-    for (var i = 0; i < allTrash.length; i++) {
+    for (var i = 0; i < allTrash[1].length; i++) {
       //allTrashPics[i];
+      console.log(typeof(allTrash[1]));
 
       $('.trash img').attr('src', allTrashPics);
 
