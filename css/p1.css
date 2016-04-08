@@ -38,6 +38,9 @@ button{
   border-radius: 5px;
   font-size: 17px;
 }
+button:hover {
+  color: #cecece;
+}
 .active {
   color: #cecece;
 }
