@@ -18,11 +18,33 @@ var litter = [
   ['plasticbag', 'img/shoppingbag.png', 2],
   ['shoppingbag', 'img/shoppingbag.png', 1]
 ];
-//--> GENERATE RANDOM LITTER
+
+
+//prompts
+var trashPickedUp = 0;
+var players = [];
+var playerScores = [];
+var whosTurn = 1;
+var user1 = prompt("hey player what's your name?");
+players.push(user1)
+console.log(players);
+  //--> 2. CREATE VAR SCORE = 0;
+userScore1 = 0;
+  //--> 3. CLICK EVENT TO 1) SETTIMER
+var startTime = Date.now()
+
+$('button').on('click', function currentTime(event) {
+  startTime = Date.now();
+  console.log(startTime);
+  event.preventDefault();
+});
+
+
+
 var litterTheBeach = function(){
 
+//--> GENERATE RANDOM LITTER
   litter.forEach(function(){
-
     //RANDOM LITTER SELECTION
     var allTrash = litter[Math.floor(Math.random()*10)];
     //SELECT ONLY THE IMAGES
@@ -39,58 +61,110 @@ var litterTheBeach = function(){
     var bodyY = $('body').innerHeight() + 50;
     trash.css("left", Math.random() * bodyX);
     trash.css("top", Math.random() * bodyY);
-
   })
 
-}
+//REMOVE TRASH
+
+    players.forEach(function(){
+      $('.trash').click(function(event) {
+        if (whosTurn == 1){
+
+          $(this).remove();
+          trashPickedUp += 1;
+
+
+          if ($('.trash').length <= 0){
+            alert("Nice work " + user1 + " you cleaned up all the trash!");
+
+            //RESET TIMER
+            var endTime = Date.now();
+
+            //RECORD USER TIME
+
+            var yourTime = endTime-startTime;
+            var yourTimeSeconds = yourTime / 1000;
+            document.getElementById("p1Time").innerHTML = "Time: " + yourTimeSeconds + "sec";
+
+            playerScores.push(yourTimeSeconds);
+            console.log(playerScores);
+            //PLAYER 2 STARTS
+            whosTurn = 2;
+           console.log('p2 turn')
+            startTime = Date.now()
+            var user2 = prompt("You think you can top " + user1 + "? Enter your name and click start");
+            players.push(user2);
+            console.log(players);
+            litterTheBeach();
+
+          }
+
+      } else if (whosTurn == 2){
+
+        $(this).remove();
+        trashPickedUp += 1;
+
+        if ($('.trash').length <= 0){
+          //RESET TIMER
+          var endTime = Date.now();
+
+          //RECORD USER TIME
+          var yourTime = endTime-startTime;
+          var yourTimeSeconds = yourTime / 1000;
+          document.getElementById("p2Time").innerHTML = "Time: " + yourTimeSeconds + "sec";
+
+          playerScores.push(yourTimeSeconds);
+          console.log(playerScores);
+          whosTurn==3
+          compareScores();
+
+          event.preventDefault();
+
+        }
+      }
+
+    });//CLOSES TRASH REMOVAL
+
+  });//CLOSES PLAYS
+
+}//CLOSES litterTheBeach
 litterTheBeach();
+
+function compareScores(){
+    //COMPARE 2 SCORES
+    whosTurn==3
+        if (playerScores[0] - playerScores[1] > 0 ){
+          alert(players[1] + " wins!");
+        } else if (playerScores[1] - playerScores[0] > 0 ){
+
+          alert(players[0]+ " wins!");
+
+      } else {
+        alert("it's a tie! Together you saved a baby turtle's life!");
+      }
+}
+
+});//CLOSES DOCUMENT READY
+
+
 
 //--> APPEND TO UI
 
 //PLAYER 1
 //--> 1. CREATE PLAYER
-var user1 = prompt("hey player what's your name?");
-console.log(user1);
-//--> 2. CREATE VAR SCORE = 0;
-userScore1 = 0;
-//--> 3. CLICK EVENT TO 1) SETTIMER
-var startTime = Date.now()
-$('button').on('click', function currentTime(event) {
-  startTime = Date.now();
-  console.log(startTime);
-  event.preventDefault();
-});
+
 
 //--> 4. ON CLICK 1. REMOVE TRASH 2. CHECK IF TRASH === 0 AND ADD POINTS TO SCORE
 
 
 //--> 5. WHEN ALL TRASH IS REMOVED 1) SETTIMEOUT 2) RETURN TOTAL SCORE
 
-var trashPickedUp = 0;
-  $('.trash').click(function() {
-
-    $(this).remove();
-    trashPickedUp += 1;
-
-    if ($('.trash').length <= 0){
-      alert("You cleaned up all the trash!");
-      var endTime = Date.now();
-
-      //CANNOT ACCESS CURRENT TIME BC SCOPE
-      var yourTime = endTime-startTime;
-      var yourTimeSeconds = yourTime / 1000;
-      document.getElementById("p1Time").innerHTML = "Time: " + yourTimeSeconds + "sec";
-
-    } else {
-      console.log("You've got more trash to clean up!")
-    }
-  });
 
 
 //--> 6. STORE PLAYER 1 TIME
 
 
 //PLAYER 2
+//--> ON START - re-populate
 //--> SAME AS 1-5
 //--> 6. STORE PLAYER 2 TIME
 
@@ -104,4 +178,3 @@ var trashPickedUp = 0;
 //3. TORE SCORES IN COOKIES
 //4. RESET SCORES AFTER
 
-});//CLOSES DOCUMENT READY
