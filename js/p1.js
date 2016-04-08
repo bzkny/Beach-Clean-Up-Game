@@ -33,10 +33,11 @@ userScore1 = 0;
   //--> 3. CLICK EVENT TO 1) SETTIMER
 var startTime = Date.now()
 
-$('button').on('click', function currentTime(event) {
+$('button').on('click', function currentTime(e) {
   startTime = Date.now();
+  $(this).addClass('active');
   console.log(startTime);
-  event.preventDefault();
+  e.preventDefault();
 });
 
 
@@ -65,7 +66,6 @@ var litterTheBeach = function(){
 
 //REMOVE TRASH
 
-    players.forEach(function(){
       $('.trash').click(function(event) {
         if (whosTurn == 1){
 
@@ -89,13 +89,13 @@ var litterTheBeach = function(){
             console.log(playerScores);
             //PLAYER 2 STARTS
             whosTurn = 2;
+            $('button').toggleClass('active');
            console.log('p2 turn')
             startTime = Date.now()
             var user2 = prompt("You think you can top " + user1 + "? Enter your name and click start");
             players.push(user2);
             console.log(players);
             litterTheBeach();
-
           }
 
       } else if (whosTurn == 2){
@@ -116,14 +116,10 @@ var litterTheBeach = function(){
           console.log(playerScores);
           whosTurn==3
           compareScores();
-
-          event.preventDefault();
-
         }
       }
 
-    });//CLOSES TRASH REMOVAL
-
+      event.preventDefault();
   });//CLOSES PLAYS
 
 }//CLOSES litterTheBeach

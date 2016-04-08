@@ -12,7 +12,7 @@ body {
   margin: 0 auto;
 }
 
-header {
+header, footer {
 color: #fff;
 text-align: center;
 font-family: Helvetica, sans-serif;
@@ -29,6 +29,17 @@ h1{
 }
 h2{
   font-size: 19px;
+}
+
+button{
+  border: none;
+  font-family: Helvetica, sans-serif;
+  background: #fff;
+  border-radius: 5px;
+  font-size: 17px;
+}
+.active {
+  color: #cecece;
 }
 
 .player1, .player2 {
@@ -65,3 +76,20 @@ width: 100%;
 .trash img:hover {
   cursor: crosshair;
 }
+footer {
+  position: fixed;
+  bottom: 10px;
+  width: 100%;
+  text-align: center;
+}
+
+footer a{
+  color: #fff;
+  text-align: center;
+  text-decoration: none;
+}
+footer a:hover{
+  border-bottom: 2px solid #fff;
+}
+
+
