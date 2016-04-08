@@ -29,16 +29,14 @@ var litterTheBeach = function(){
     var allTrashPics = allTrash[1];
     //CREATE DIV TO APPEND
     var trash = $('<div class="trash"><img class="trashpic" src=""/> </div>');
-    $(trash).children('img').attr('src',allTrashPics);
+    var litterNum = $(trash).children('img').attr('src',allTrashPics);
     //ADD CONTAINERS TO BEACH
     var beach = $('.beach');
     beach.append(trash);
 
     //RANDOM PLACEMENT OF TRASH ON BEACH
     var bodyX = $('.container').innerWidth() - 90;
-    console.log(bodyX);
     var bodyY = $('body').innerHeight() + 50;
-    console.log(bodyY);
     trash.css("left", Math.random() * bodyX);
     trash.css("top", Math.random() * bodyY);
 
@@ -46,14 +44,49 @@ var litterTheBeach = function(){
 
 }
 litterTheBeach();
+
 //--> APPEND TO UI
 
 //PLAYER 1
 //--> 1. CREATE PLAYER
+var user1 = prompt("hey player what's your name?");
+console.log(user1);
 //--> 2. CREATE VAR SCORE = 0;
-//--> 3. CLICK EVENT TO 1) APPENDED TRASH & 2) SETTIMER
-//--> 4. ON CLICK REMOVE TRASH AND ADD POINTS TO SCORE
+userScore1 = 0;
+//--> 3. CLICK EVENT TO 1) SETTIMER
+var startTime = Date.now()
+$('button').on('click', function currentTime(event) {
+  startTime = Date.now();
+  console.log(startTime);
+  event.preventDefault();
+});
+
+//--> 4. ON CLICK 1. REMOVE TRASH 2. CHECK IF TRASH === 0 AND ADD POINTS TO SCORE
+
+
 //--> 5. WHEN ALL TRASH IS REMOVED 1) SETTIMEOUT 2) RETURN TOTAL SCORE
+
+var trashPickedUp = 0;
+  $('.trash').click(function() {
+
+    $(this).remove();
+    trashPickedUp += 1;
+
+    if ($('.trash').length <= 0){
+      alert("You cleaned up all the trash!");
+      var endTime = Date.now();
+
+      //CANNOT ACCESS CURRENT TIME BC SCOPE
+      var yourTime = endTime-startTime;
+      var yourTimeSeconds = yourTime / 1000;
+      document.getElementById("p1Time").innerHTML = "Time: " + yourTimeSeconds + "sec";
+
+    } else {
+      console.log("You've got more trash to clean up!")
+    }
+  });
+
+
 //--> 6. STORE PLAYER 1 TIME
 
 

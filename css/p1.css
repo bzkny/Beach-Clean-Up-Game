@@ -5,15 +5,44 @@ body {
   background-size: cover;
 }
 
-h1, h2 {
-color: #fff;
-}
-
 .container {
   width: 98%;
   max-width: 1200px;
   padding: 1%;
   margin: 0 auto;
+}
+
+header {
+color: #fff;
+text-align: center;
+font-family: Helvetica, sans-serif;
+line-height: 1.2;
+}
+
+h1, h2 {
+color: #fff;
+text-align: center;
+padding-bottom: 17px;
+}
+h1{
+  font-size: 30px;
+}
+h2{
+  font-size: 19px;
+}
+
+.player1, .player2 {
+width: 199px;
+height: 199px;
+}
+.player1 img, .player2 img {
+width: 100%;
+}
+.player1 {
+  float: left;
+}
+.player2 {
+  float: right;
 }
 
 .beach{
@@ -31,4 +60,8 @@ width: 90px;
 }
 .trash img {
 width: 100%;
+}
+
+.trash img:hover {
+  cursor: crosshair;
 }
