@@ -52,6 +52,22 @@ height: 199px;
 .player1 img, .player2 img {
 width: 100%;
 }
+.player1 .img-border, .player2 .img-border {
+border: #fff 7px solid;
+border-top: #fff 30px solid;
+background: #fff;
+-webkit-box-shadow: 1px 1px 23px 2px rgba(95,95,95,0.9);
+-moz-box-shadow: 1px 1px 23px 2px rgba(95,95,95,0.9);
+box-shadow: 1px 1px 23px 2px rgba(95,95,95,0.9);
+}
+.player1>p, .player2>p {
+  background: #fff;
+  opacity: .8;
+  position: relative;
+  top: 25px;
+  padding-top: 0;
+  color: #3030CA;
+}
 .player1 {
   float: left;
 }
